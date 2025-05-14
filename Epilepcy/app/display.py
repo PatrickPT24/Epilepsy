@@ -19,7 +19,7 @@ def display():
 
             # Preprocess and predict
             X = preprocess_uploaded_data(data)
-            model = joblib.load("models/ensemble_model.pkl")
+            model = joblib.load("Epilepcy/models/ensemble_model.pkl")
             prediction = model.predict(X)
 
             result = "🟥 Seizure Detected" if prediction[0] == 1 else "🟩 No Seizure Detected"

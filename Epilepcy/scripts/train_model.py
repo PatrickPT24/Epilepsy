@@ -11,7 +11,7 @@ import os
 os.makedirs('models', exist_ok=True)
 
 # Load dataset
-df = pd.read_csv('data/epileptic_seizure_data.csv')
+df = pd.read_csv('Epilepcy/data/epileptic_seizure_data.csv')
 
 # Drop unnamed columns if present
 df = df.drop(columns=['Unnamed', 'Unnamed: 0'], errors='ignore')
@@ -25,14 +25,14 @@ y = df['y']
 
 # Save feature list
 feature_list = list(X.columns)
-joblib.dump(feature_list, 'models/feature_list.pkl')
+joblib.dump(feature_list, 'Epilepcy/models/feature_list.pkl')
 
 # Feature scaling
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Save the scaler
-joblib.dump(scaler, 'models/scaler.pkl')
+joblib.dump(scaler, 'Epilepcy/models/scaler.pkl')
 
 # Train/test split
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
@@ -59,9 +59,9 @@ xgb.fit(X_train, y_train)
 ensemble.fit(X_train, y_train)
 
 # Save models
-joblib.dump(rf, 'models/rf_model.pkl')
-joblib.dump(xgb, 'models/xgb_model.pkl')
-joblib.dump(ensemble, 'models/ensemble_model.pkl')
+joblib.dump(rf, 'Epilepcy/models/rf_model.pkl')
+joblib.dump(xgb, 'Epilepcy/models/xgb_model.pkl')
+joblib.dump(ensemble, 'Epilepcy/models/ensemble_model.pkl')
 
 # Evaluate accuracy
 y_pred = ensemble.predict(X_test)

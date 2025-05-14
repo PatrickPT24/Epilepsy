@@ -21,7 +21,7 @@ def load_and_preprocess(filepath):
     y = df['y']
 
     # Load and apply scaler saved during training
-    scaler = joblib.load("models/scaler.pkl")
+    scaler = joblib.load("Epilepcy/models/scaler.pkl")
     X_scaled = scaler.transform(X)
 
     return X_scaled, y
@@ -36,8 +36,8 @@ def preprocess_uploaded_data(df):
     df = df.drop(columns=['Unnamed', 'Unnamed: 0'], errors='ignore')
 
     # Load expected feature list and scaler
-    feature_list = joblib.load("models/feature_list.pkl")
-    scaler = joblib.load("models/scaler.pkl")
+    feature_list = joblib.load("Epilepcy/models/feature_list.pkl")
+    scaler = joblib.load("Epilepcy/models/scaler.pkl")
 
     # Add any missing columns as zero
     for col in feature_list:
